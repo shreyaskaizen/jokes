@@ -114,3 +114,9 @@
     flex-direction: column;
   }
 }
+
+$my-red: #ff0000;
+
+:export {
+  myRed: $my-red;
+}
