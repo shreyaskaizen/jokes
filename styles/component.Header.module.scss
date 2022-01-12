@@ -1,0 +1,7 @@
+@use "dg.Shadow.module" as shadow;
+
+.container {
+    height: 64px;
+    width: 100%;
+    box-shadow: shadow.$shadow-primary;
+}

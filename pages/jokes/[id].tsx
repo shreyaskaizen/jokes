@@ -1,9 +1,12 @@
 import Head from "next/head";
-import colors from "../../styles/_dg.Colors.module.scss";
+import Header from "../../src/component.Header";
+import TopBackground from "../../src/component.TopBackground";
+import HorizontalSpacer from "../../src/component.HorizontalSpacer";
+import Joke from "../../src/component.Joke";
 
 function Jokes({ post }: any) {
     return (
-        <div>
+        <>
             <Head>
                 <title>Create Next App</title>
                 <meta
@@ -12,9 +15,12 @@ function Jokes({ post }: any) {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <p style={{ color: colors.primary }}>Jokes</p>
-            <pre>{JSON.stringify(post)}</pre>
-        </div>
+            <TopBackground />
+            <Header />
+            <HorizontalSpacer space={10} />
+            <Joke category={post.category}></Joke>
+            {/* <div>{post.joke}</div> */}
+        </>
     );
 }
 

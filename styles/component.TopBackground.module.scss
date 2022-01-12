@@ -1,0 +1,14 @@
+@use "dg.Colors.module" as colors;
+
+$top-background-height: 240px;
+$top-background-color: colors.$primary;
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    background-color: $top-background-color;
+    height: $top-background-height;
+}

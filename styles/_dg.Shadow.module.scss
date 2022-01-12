@@ -1,0 +1,19 @@
+$shadow-primary-offset-x: 0;
+$shadow-primary-offset-y: 0;
+$shadow-primary-blur-radius: 40;
+$shadow-primary-color-rgba: rgba(0, 0, 0, 0.2);
+$shadow-primary-color-hex: #000000;
+$shadow-primary-alpha: 20;
+
+$shadow-primary: #{$shadow-primary-offset-x + "px" $shadow-primary-offset-x +
+    "px" $shadow-primary-blur-radius + "px" $shadow-primary-color-rgba};
+
+:export {
+    shadowPrimaryOffsetX: $shadow-primary-offset-x;
+    $shadowPrimaryOffsetY: $shadow-primary-offset-y;
+    $shadowPrimaryBlurRadius: $shadow-primary-blur-radius;
+    $shadowPrimaryColorRGBA: $shadow-primary-color-rgba;
+    $shadowPrimaryColorHex: $shadow-primary-color-hex;
+    $shadowPrimaryAlpha: $shadow-primary-alpha;
+    $shadowPrimary: $shadow-primary;
+}
