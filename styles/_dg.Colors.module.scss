@@ -1,13 +1,13 @@
 $primary: #30cbe8;
-$primary-variant: #D5FEFE;
-$secondary: #FF4430;
-$grey: #3A4A4D;
-$white: #FFFFFF;
+$primary-variant: #d5fefe;
+$secondary: #ff4430;
+$grey: #3a4a4d;
+$white: #ffffff;
 
 :export {
-  primary: $primary;
-  primaryVariant: $primary-variant;
-  secondary: $secondary;
-  grey: $grey;
-  neutralWhite: $white;
+    primary: $primary;
+    primaryVariant: $primary-variant;
+    secondary: $secondary;
+    grey: $grey;
+    neutralWhite: $white;
 }
