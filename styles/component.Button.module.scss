@@ -1,0 +1,14 @@
+@use "dg.Shadow.module" as shadow;
+@use "dg.Colors.module" as colors;
+
+.round {
+    cursor: pointer;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: shadow.$shadow-primary;
+    color: colors.$white;
+}

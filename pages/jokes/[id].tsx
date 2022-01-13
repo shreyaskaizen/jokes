@@ -3,6 +3,8 @@ import Header from "../../src/component.Header";
 import TopBackground from "../../src/component.TopBackground";
 import HorizontalSpacer from "../../src/component.HorizontalSpacer";
 import Joke from "../../src/component.Joke";
+import Settings from "../../src/component.Settings";
+import Footer from "../../src/component.Footer";
 
 function Jokes({ post }: any) {
     return (
@@ -15,10 +17,17 @@ function Jokes({ post }: any) {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+
             <TopBackground />
             <Header />
-            <HorizontalSpacer space={10} />
-            <Joke category={post.category}></Joke>
+            <div style={{ margin: "0 32px" }}>
+                <HorizontalSpacer space={10} />
+                <Joke category={post.category}></Joke>
+                <HorizontalSpacer space={10} />
+
+                <Settings />
+            </div>
+            <Footer />
             {/* <div>{post.joke}</div> */}
         </>
     );
