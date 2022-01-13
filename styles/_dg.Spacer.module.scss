@@ -1,0 +1,18 @@
+$spacer-count: 24;
+$spacer-gap: 4;
+
+@function generateSpacerArray() {
+    $result: ();
+    @for $space from 1 through $spacer-count {
+        $result: append($result, $space);
+    }
+    @return $result;
+}
+
+$spacers: generateSpacerArray();
+
+:export {
+    @each $space in $spacers {
+        #{$space}: #{($spacer-gap * $space) + "px"};
+    }
+}
