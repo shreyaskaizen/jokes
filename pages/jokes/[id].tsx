@@ -5,8 +5,10 @@ import HorizontalSpacer from "../../src/component.HorizontalSpacer";
 import Joke from "../../src/component.Joke";
 import Settings from "../../src/component.Settings";
 import Footer from "../../src/component.Footer";
+import randomJokeIdGenerator from "../../utils/randomJokeIdGenerator";
+import Link from "next/link";
 
-function Jokes({ post }: any) {
+function Jokes({ joke, nextJokeId }: { joke: any; nextJokeId: number }) {
     return (
         <>
             <Head>
@@ -22,13 +24,20 @@ function Jokes({ post }: any) {
             <Header />
             <div style={{ margin: "0 32px" }}>
                 <HorizontalSpacer space={10} />
-                <Joke category={post.category}></Joke>
+                <Joke joke={joke}></Joke>
                 <HorizontalSpacer space={10} />
-
+                <Link
+                    href={{
+                        pathname: "/jokes/[id]",
+                    }}
+                    as={`/jokes/${nextJokeId}`}
+                >
+                    <a>joke me</a>
+                </Link>
+                <HorizontalSpacer space={10} />
                 <Settings />
             </div>
             <Footer />
-            {/* <div>{post.joke}</div> */}
         </>
     );
 }
@@ -47,12 +56,27 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-    const res = await fetch(
+    const infoResponse = await fetch("https://v2.jokeapi.dev/info");
+    const info = await infoResponse.json();
+    const [englishJokesLowerLimit, englishJokesUpperLimit] =
+        info.jokes.idRange.en;
+    const jokeResponse: any = await fetch(
         `https://v2.jokeapi.dev/joke/Any?idRange=${params.id}`
     );
-    const post = await res.json();
+    const joke: any = await jokeResponse.json();
 
-    return { props: { post }, revalidate: 10 };
+    const nextJokeId = randomJokeIdGenerator(
+        englishJokesLowerLimit,
+        englishJokesUpperLimit,
+        joke.id
+    );
+    return {
+        props: {
+            joke: joke,
+            nextJokeId,
+        },
+        revalidate: 3600,
+    };
 }
 
 export default Jokes;
