@@ -1,6 +1,24 @@
 @use "dg.Shadow.module" as shadow;
 @use "dg.Colors.module" as colors;
 
+.link {
+    background-color: colors.$secondary;
+    text-decoration: unset;
+    width: 100%;
+    display: flex;
+    border-radius: 5px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    color: colors.$white;
+    letter-spacing: 0.5px;
+    word-spacing: 3px;
+}
+
 .round {
     cursor: pointer;
     height: 48px;

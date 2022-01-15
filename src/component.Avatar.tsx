@@ -10,7 +10,6 @@ function Avatar() {
                 className={image}
                 src={ProfilePicture}
                 alt="Profile Picture"
-                priority
                 layout="fill"
                 objectFit="cover"
                 // width={500} automatically provided
