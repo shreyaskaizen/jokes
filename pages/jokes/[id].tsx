@@ -7,8 +7,31 @@ import Settings from "../../src/component.Settings";
 import Footer from "../../src/component.Footer";
 import randomJokeIdGenerator from "../../utils/randomJokeIdGenerator";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import ButtonLink from "../../src/component.ButtonLink";
 
-function Jokes({ joke, nextJokeId }: { joke: any; nextJokeId: number }) {
+function Jokes({
+    joke,
+    lowerLimit,
+    upperLimit,
+    exclude,
+}: {
+    joke: any;
+    lowerLimit: number;
+    upperLimit: number;
+    exclude: number;
+}) {
+    const [nextJokeId, setNextJokeId] = useState(0);
+
+    useEffect(() => {
+        const nextJokeId = randomJokeIdGenerator(
+            lowerLimit,
+            upperLimit,
+            exclude
+        );
+        setNextJokeId(nextJokeId);
+    }, [exclude]);
+
     return (
         <>
             <Head>
@@ -25,16 +48,17 @@ function Jokes({ joke, nextJokeId }: { joke: any; nextJokeId: number }) {
             <div style={{ margin: "0 32px" }}>
                 <HorizontalSpacer space={10} />
                 <Joke joke={joke}></Joke>
-                <HorizontalSpacer space={10} />
+                <HorizontalSpacer space={8} />
                 <Link
                     href={{
                         pathname: "/jokes/[id]",
                     }}
                     as={`/jokes/${nextJokeId}`}
+                    passHref
                 >
-                    <a>joke me</a>
+                    <ButtonLink>CRACK ANOTHER ONE</ButtonLink>
                 </Link>
-                <HorizontalSpacer space={10} />
+                <HorizontalSpacer space={8} />
                 <Settings />
             </div>
             <Footer />
@@ -65,17 +89,14 @@ export async function getStaticProps({ params }: any) {
     );
     const joke: any = await jokeResponse.json();
 
-    const nextJokeId = randomJokeIdGenerator(
-        englishJokesLowerLimit,
-        englishJokesUpperLimit,
-        joke.id
-    );
     return {
         props: {
             joke: joke,
-            nextJokeId,
+            lowerLimit: englishJokesLowerLimit,
+            upperLimit: englishJokesUpperLimit,
+            exclude: joke.id,
         },
-        revalidate: 3600,
+        revalidate: 10,
     };
 }
 
